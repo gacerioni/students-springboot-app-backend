@@ -1,0 +1,13 @@
+package com.gabsthecreator.fullstackspringbootreact;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class FullstackSpringbootReactApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FullstackSpringbootReactApplication.class, args);
+	}
+
+}
