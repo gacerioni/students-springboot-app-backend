@@ -21,6 +21,11 @@ public class StudentController {
     @PostMapping
     public void addStudent(@RequestBody Student student){
         studentService.addStudent(student);
+    }
 
+    @DeleteMapping("/{studentId}")
+    public void deleteStudent(@PathVariable("studentId") Long studentId) {
+        // check if user exists later!
+        studentService.deleteStudent(studentId);
     }
 }

@@ -20,4 +20,8 @@ public class StudentService {
         // check if email is already taken
         studentRepository.save(student);
     }
+
+    public void deleteStudent(Long studentId) {
+        studentRepository.deleteById(studentId);
+    }
 }
