@@ -27,6 +27,15 @@ function StudentDrawerForm({showDrawer, setShowDrawer, fetchStudents}) {
             })
             .catch(err => {
                 console.log(err);
+                err.response.json().then(res => {
+                        console.log(res);
+                        errorNotification(
+                            "There was an issue while adding a new Student.",
+                            `[HTTP ${res.status} - ${res.error}]: ${res.message}`,
+                            "bottomLeft"
+                        )
+                    }
+                )
             })
             .finally(() => {
                 setSubmitting(false);
@@ -34,7 +43,7 @@ function StudentDrawerForm({showDrawer, setShowDrawer, fetchStudents}) {
     };
 
     const onFinishFailed = errorInfo => {
-        alert(JSON.stringify(errorInfo, null, 2));
+        alert("INPUT JSON THAT HAS FAILED:\n" + JSON.stringify(errorInfo, null, 2));
     };
 
     return <Drawer
@@ -104,7 +113,7 @@ function StudentDrawerForm({showDrawer, setShowDrawer, fetchStudents}) {
                 </Col>
             </Row>
             <Row>
-                {submitting && <Spin indicator={antIcon} />}
+                {submitting && <Spin indicator={antIcon}/>}
             </Row>
         </Form>
     </Drawer>

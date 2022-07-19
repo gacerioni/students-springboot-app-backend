@@ -26,7 +26,7 @@ import {
 import StudentDrawerForm from "./StudentDrawerForm";
 
 import './App.css';
-import {successNotification} from "./Notification";
+import {errorNotification, successNotification} from "./Notification";
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
@@ -46,10 +46,20 @@ const TheAvatar = ({name}) => {
 }
 
 const removeStudent = (studentId, studentName, callback) => {
-    deleteStudent(studentId).then(() => {
-        successNotification("Student deleted!", `Student ${studentName} with the ID: ${studentId} was deleted!`);
-        callback();
-    });
+    deleteStudent(studentId)
+        .then(() => {
+            successNotification("Student deleted!", `Student ${studentName} with the ID: ${studentId} was deleted!`);
+            callback();
+        })
+        .catch(err => {
+            err.response.json().then(res => {
+                console.log(res);
+                errorNotification(
+                    "There was an issue while removing the Student.",
+                    `[HTTP ${res.status} - ${res.error}]: ${res.message}`
+                )
+            });
+        });
 }
 
 const columns = fetchStudents => [
@@ -89,6 +99,7 @@ const columns = fetchStudents => [
                     placement='topRight'
                     title={`Are you sure you want to delete ${student.name}?`}
                     onConfirm={() => removeStudent(student.id, student.name, fetchStudents)}
+                    //onConfirm={() => removeStudent(13453, student.name, fetchStudents)}
                     okText='Yes'
                     cancelText='No'>
                     <Radio.Button value="small">Delete</Radio.Button>
@@ -112,8 +123,18 @@ function App() {
             .then(data => {
                 console.log(data);
                 setStudents(data);
-                setFetching(false);
             })
+            .catch(err => {
+                console.log(err.response);
+                err.response.json().then(res => {
+                    console.log(res);
+                    errorNotification(
+                        "There was an issue!",
+                        `[HTTP ${res.status} - ${res.error}]: ${res.message}`
+                    )
+                })
+            })
+            .finally(setFetching(false));
 
     useEffect(() => {
         console.log("component is mounted");
@@ -126,7 +147,19 @@ function App() {
             return <Spin indicator={antIcon}/>
         }
         if (students.length <= 0) {
-            return <Empty/>;
+            return <>
+                <Button
+                    onClick={() => setShowDrawer(!showDrawer)}
+                    type="primary" shape="round" icon={<PlusOutlined/>} size="small">
+                    Add New Student
+                </Button>
+                <StudentDrawerForm
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    fetchStudents={fetchStudents}
+                />
+                <Empty/>
+            </>
         }
         return <>
             <StudentDrawerForm

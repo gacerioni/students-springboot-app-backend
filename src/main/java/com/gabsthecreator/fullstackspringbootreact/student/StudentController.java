@@ -3,6 +3,7 @@ package com.gabsthecreator.fullstackspringbootreact.student;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,11 +16,12 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getAllStudents() {
+        //throw new IllegalStateException("vish");
         return studentService.getAllStudents();
     }
 
     @PostMapping
-    public void addStudent(@RequestBody Student student){
+    public void addStudent(@Valid @RequestBody Student student){
         studentService.addStudent(student);
     }
 
