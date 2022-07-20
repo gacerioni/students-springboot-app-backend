@@ -12,7 +12,7 @@ image:
   pullPolicy: Always
 
 imagePullSecrets: []
-nameOverride: <+pipeline.variables.serviceName>
+nameOverride: "fullstack-springboot-react"
 fullnameOverride: ""
 
 serviceAccount:
