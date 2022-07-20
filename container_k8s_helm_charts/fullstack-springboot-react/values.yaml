@@ -12,7 +12,7 @@ image:
   pullPolicy: Always
 
 imagePullSecrets: []
-nameOverride: ""
+nameOverride: <+pipeline.variables.serviceName>
 fullnameOverride: ""
 
 serviceAccount:

@@ -1,3 +1,36 @@
+{{- if .Values.env.config }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fullstack-springboot-react.fullname" . }}
+data:
+  {{ .Values.env.config | toYaml | indent 2 }}
+---
+{{- end}}
+
+{{- if .Values.env.secrets }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "fullstack-springboot-react.fullname" . }}
+stringData:
+  {{ .Values.env.secrets | toYaml | indent 2 }}
+---
+{{- end }}
+
+{{- if .Values.dockercfg }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "fullstack-springboot-react.fullname" . }}-dockercfg
+  annotations:
+    harness.io/skip-versioning: true
+data:
+  .dockercfg: {{ .Values.dockercfg }}
+type: kubernetes.io/dockercfg
+---
+{{- end }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -47,6 +80,17 @@ spec:
           #    port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if or .Values.env.config .Values.env.secrets }}
+          envFrom:
+          {{- if .Values.env.config }}
+          - configMapRef:
+              name: {{ include "fullstack-springboot-react.fullname" . }}
+          {{- end }}
+          {{- if .Values.env.secrets }}
+          - secretRef:
+              name: {{ include "fullstack-springboot-react.fullname" . }}
+          {{- end }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
