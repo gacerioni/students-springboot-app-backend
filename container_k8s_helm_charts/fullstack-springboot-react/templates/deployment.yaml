@@ -1,35 +1,22 @@
-{{- if .Values.env.config }}
+{{- if .Values.env.config}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "fullstack-springboot-react.fullname" . }}
 data:
-  {{ .Values.env.config | toYaml | indent 2 }}
+{{ .Values.env.config | toYaml | indent 2 }}
 ---
 {{- end}}
 
-{{- if .Values.env.secrets }}
+{{- if .Values.env.secrets}}
 apiVersion: v1
 kind: Secret
 metadata:
   name: {{ include "fullstack-springboot-react.fullname" . }}
 stringData:
-  {{ .Values.env.secrets | toYaml | indent 2 }}
+{{ .Values.env.secrets | toYaml | indent 2 }}
 ---
-{{- end }}
-
-{{- if .Values.dockercfg }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ include "fullstack-springboot-react.fullname" . }}-dockercfg
-  annotations:
-    harness.io/skip-versioning: true
-data:
-  .dockercfg: {{ .Values.dockercfg }}
-type: kubernetes.io/dockercfg
----
-{{- end }}
+{{- end}}
 
 apiVersion: apps/v1
 kind: Deployment
