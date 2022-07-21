@@ -236,7 +236,7 @@ function App() {
                     <a
                         target="_blank"
                         rel="noreferrer"
-                        href="https://www.linkedin.com/in/gabrielcerioni/">
+                        href="https://www.linkedin.com/in/gabrielcerioni">
                         My Profile
                     </a>
                 </Divider>
