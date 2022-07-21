@@ -12,7 +12,8 @@ import {
     Badge,
     Avatar,
     Radio,
-    Popconfirm
+    Popconfirm,
+    Image, Divider
 } from 'antd';
 import {
     DesktopOutlined,
@@ -226,8 +227,20 @@ function App() {
                     {renderStudents()}
                 </div>
             </Content>
-            <Footer style={{textAlign: 'center'}}>Gabs the Creator ©2022 Created with Ant UED - and I studied at
-                Amigoscode.com</Footer>
+            <Footer style={{textAlign: 'center'}}>
+                <Image
+                    width={75}
+                    src='shiba_icon.jpg'
+                />
+                <Divider>
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href="https://www.linkedin.com/in/gabrielcerioni/">
+                        My Profile
+                    </a>
+                </Divider>
+            </Footer>
         </Layout>
     </Layout>
 }
