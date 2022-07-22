@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.gabsthecreator</groupId>
 	<artifactId>fullstack-springboot-react</artifactId>
-	<version>0.0.8-SNAPSHOT</version>
+	<version>0.0.11-SNAPSHOT</version>
 	<name>fullstack-springboot-react</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -30,6 +30,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -67,7 +72,7 @@
 		<profile>
 			<id>build-frontend</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
