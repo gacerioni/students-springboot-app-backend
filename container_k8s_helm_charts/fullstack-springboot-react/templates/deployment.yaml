@@ -61,10 +61,14 @@ spec:
             httpGet:
               path: {{ .Values.apiPathToProbeTesting }}
               port: http
+            initialDelaySeconds: 20
+            periodSeconds: 5
           readinessProbe:
             httpGet:
               path: {{ .Values.apiPathToProbeTesting }}
               port: http
+            initialDelaySeconds: 20
+            periodSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if or .Values.env.config .Values.env.secrets }}
