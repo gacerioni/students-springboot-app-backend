@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.gabsthecreator</groupId>
 	<artifactId>fullstack-springboot-react</artifactId>
-	<version>0.0.19</version>
+	<version>0.0.20</version>
 	<name>fullstack-springboot-react</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -98,12 +98,21 @@
 								</configuration>
 							</execution>
 							<execution>
+								<id>npm config cache</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+								<configuration>
+									<arguments>config set cache npmcacheharness</arguments>
+								</configuration>
+							</execution>
+							<execution>
 								<id>npm install</id>
 								<goals>
 									<goal>npm</goal>
 								</goals>
 								<configuration>
-									<arguments>install --cache npmcacheharness</arguments>
+									<arguments>install</arguments>
 								</configuration>
 							</execution>
 							<execution>
