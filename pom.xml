@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.gabsthecreator</groupId>
 	<artifactId>fullstack-springboot-react</artifactId>
-	<version>0.0.14-SNAPSHOT</version>
+	<version>0.0.15-SNAPSHOT</version>
 	<name>fullstack-springboot-react</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -72,7 +72,7 @@
 		<profile>
 			<id>build-frontend</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
@@ -103,7 +103,7 @@
 									<goal>npm</goal>
 								</goals>
 								<configuration>
-									<arguments>install</arguments>
+									<arguments>ci</arguments>
 								</configuration>
 							</execution>
 							<execution>
