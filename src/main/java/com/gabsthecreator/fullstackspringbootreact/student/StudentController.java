@@ -13,7 +13,6 @@ public class StudentController {
 
     private final StudentService studentService;
 
-
     @GetMapping
     public List<Student> getAllStudents() {
         //throw new IllegalStateException("vish");
@@ -21,7 +20,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public void addStudent(@Valid @RequestBody Student student){
+    public void addStudent(@Valid @RequestBody Student student) {
         studentService.addStudent(student);
     }
 
@@ -29,5 +28,17 @@ public class StudentController {
     public void deleteStudent(@PathVariable("studentId") Long studentId) {
         // check if user exists later!
         studentService.deleteStudent(studentId);
+    }
+
+    @PutMapping(path = "{studentId}")
+    public void updateStudent(
+            @PathVariable("studentId") Long studentId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) Gender gender
+    ) {
+
+        studentService.updateStudent(studentId, name, email, gender);
+
     }
 }
