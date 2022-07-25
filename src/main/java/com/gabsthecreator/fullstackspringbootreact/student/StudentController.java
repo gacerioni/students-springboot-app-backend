@@ -12,25 +12,30 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    private final String corsOriginPath = "*";
 
     @GetMapping
+    @CrossOrigin(origins = corsOriginPath)
     public List<Student> getAllStudents() {
         //throw new IllegalStateException("vish");
         return studentService.getAllStudents();
     }
 
     @PostMapping
+    @CrossOrigin(origins = "*")
     public void addStudent(@Valid @RequestBody Student student) {
         studentService.addStudent(student);
     }
 
     @DeleteMapping("/{studentId}")
+    @CrossOrigin(origins = corsOriginPath)
     public void deleteStudent(@PathVariable("studentId") Long studentId) {
         // check if user exists later!
         studentService.deleteStudent(studentId);
     }
 
     @PutMapping(path = "{studentId}")
+    @CrossOrigin(origins = corsOriginPath)
     public void updateStudent(
             @PathVariable("studentId") Long studentId,
             @RequestParam(required = false) String name,
