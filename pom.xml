@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.gabsthecreator</groupId>
 	<artifactId>fullstack-springboot-react</artifactId>
-	<version>0.0.23</version>
+	<version>0.0.24</version>
 	<name>fullstack-springboot-react</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -54,6 +54,10 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
