@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.gabsthecreator</groupId>
     <artifactId>fullstack-springboot-react</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <name>fullstack-springboot-react</name>
     <description>Demo project for Spring Boot</description>
     <properties>

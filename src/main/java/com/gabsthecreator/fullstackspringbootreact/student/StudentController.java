@@ -22,7 +22,7 @@ public class StudentController {
     }
 
     @PostMapping
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = corsOriginPath)
     public void addStudent(@Valid @RequestBody Student student) {
         studentService.addStudent(student);
     }
