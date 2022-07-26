@@ -54,7 +54,7 @@ env:
     PG_DB_PWD: <+secrets.getValue("org.springbootdemopostgrespwd")>
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
