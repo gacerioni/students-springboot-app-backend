@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.gabsthecreator</groupId>
     <artifactId>fullstack-springboot-react</artifactId>
-    <version>0.3.0</version>
+    <version>0.3.5</version>
     <name>fullstack-springboot-react</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -54,6 +54,14 @@
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
     </dependencies>
 
