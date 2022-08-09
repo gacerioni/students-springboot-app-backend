@@ -83,7 +83,7 @@ spec:
           {{- end }}
           {{- end }}
           volumeMounts:
-          - mountPath: /opt/appdynamics-java
+          - mountPath: /opt/appdynamics
             name: appd-agent-repo-java
       initContainers:
         - command:
