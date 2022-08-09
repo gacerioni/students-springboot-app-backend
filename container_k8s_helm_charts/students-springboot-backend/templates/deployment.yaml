@@ -82,6 +82,21 @@ spec:
               name: {{ include "fullstack-springboot-react.fullname" . }}
           {{- end }}
           {{- end }}
+        volumeMounts:
+          - mountPath: /opt/appdynamics-java
+            name: appd-agent-repo-java
+      initContainers:
+        - command:
+            - cp
+            - -ra
+            - /opt/appdynamics/.
+            - /opt/temp
+          image: docker.io/appdynamics/java-agent:22.7.0
+          imagePullPolicy: IfNotPresent
+          name: appd-agent-attach
+          volumeMounts:
+            - mountPath: /opt/temp
+              name: appd-agent-repo-java
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
