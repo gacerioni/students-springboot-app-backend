@@ -14,7 +14,7 @@ public class IndexController {
     @RequestMapping("/")
     public String index() {
 
-        return "<html>\n" + "<header><title>Gabs Bootcamp App</title>" +
+        return "<html>\n" + "<header><title>Gabs Bootcamp App - Students</title>" +
                 "<style>" +
                 "table {\n" +
                 "  font-family: arial, sans-serif;\n" +
