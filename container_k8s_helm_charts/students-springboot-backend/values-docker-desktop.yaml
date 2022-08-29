@@ -46,6 +46,10 @@ service:
 env:
   config:
   secrets:
+    PG_DB_HOST: <+secrets.getValue("org.springbootdemopostgresserver")>
+    PG_DB_PORT: <+secrets.getValue("org.springbootdemopostgresport")>
+    PG_DB_USER: <+secrets.getValue("org.springbootdemopostgresuser")>
+    PG_DB_PWD: <+secrets.getValue("org.springbootdemopostgrespwd")>
 
 ingress:
   enabled: false
